@@ -18,6 +18,7 @@ namespace LibraryData
         DateTime GetCurrentHoldPlaced(int id);
         CheckOut GetById(int checkoutId);
         CheckOut GetLatestCheckout(int id);
+        bool IsCheckedOut(int id);
 
 
         void CheckOutItem(int assetId, int libraryCardId);
