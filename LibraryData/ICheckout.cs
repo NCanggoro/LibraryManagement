@@ -17,7 +17,7 @@ namespace LibraryData
         string GetCurrentCheckoutPatron(int assetId);
         DateTime GetCurrentHoldPlaced(int id);
         CheckOut GetById(int checkoutId);
-        CheckOut GetLatestCheckout(int id);
+        CheckOut GetLatestCheckout(int assetId);
         bool IsCheckedOut(int id);
 
 

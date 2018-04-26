@@ -8,10 +8,10 @@ namespace LibraryManagement.Controllers
 {
     public class CatalogController : Controller
     {
-        private  ILibraryAsset _asset;
+        private ILibraryAsset _asset;
         private ICheckout _checkouts;
 
-        public CatalogController (ILibraryAsset asset, ICheckout checkout)
+        public CatalogController(ILibraryAsset asset, ICheckout checkout)
         {
             _asset = asset;
             _checkouts = checkout;
@@ -39,7 +39,7 @@ namespace LibraryManagement.Controllers
 
             return View(model);
         }
-
+        
         public IActionResult Detail(int id)
         {
             var asset = _asset.GetById(id);
@@ -49,13 +49,13 @@ namespace LibraryManagement.Controllers
                 {
                     HoldPlaced = _checkouts.GetCurrentHoldPlaced(a.Id),
                     PatronName = _checkouts.GetCurrentHoldPatronName(a.Id)
-
                 });
 
             var model = new AssetDetailModel
             {
                 AssetId = id,
                 Title = asset.Title,
+                Type = _asset.GetType(id),
                 Year = asset.Year,
                 Cost = asset.Cost,
                 Status = asset.Status.Name,
@@ -69,24 +69,21 @@ namespace LibraryManagement.Controllers
                 PatronName = _checkouts.GetCurrentCheckoutPatron(id),
                 CurrentHolds = currentHolds
             };
-
             return View(model);
         }
 
-        public IActionResult Checkout (int id)
+        public IActionResult Checkout(int id)
         {
             var asset = _asset.GetById(id);
 
             var model = new CheckoutModel
             {
                 AssetId = id,
-                ImageUrl = asset.ImageUrl,
                 Title = asset.Title,
+                ImageUrl = asset.ImageUrl,
                 LibraryCardId = "",
                 IsCheckedOut = _checkouts.IsCheckedOut(id)
-
             };
-
             return View(model);
         }
 
@@ -97,34 +94,31 @@ namespace LibraryManagement.Controllers
             var model = new CheckoutModel
             {
                 AssetId = id,
-                ImageUrl = asset.ImageUrl,
                 Title = asset.Title,
+                ImageUrl = asset.ImageUrl,
                 LibraryCardId = "",
                 IsCheckedOut = _checkouts.IsCheckedOut(id),
-                HoldCount = _checkouts.GetCurrentHold(id) .Count()
-
+                HoldCount = _checkouts.GetCurrentHold(id).Count()
             };
-
             return View(model);
         }
 
+        public IActionResult MarkLost (int assetId)
+        {
+            _checkouts.MarkLost(assetId);
+            return RedirectToAction("Detail", new { id = assetId });
+        }
 
         public IActionResult MarkFound(int assetId)
         {
             _checkouts.MarkFound(assetId);
-            return RedirectToAction("Detail", new { id = assetId});
-        }
-
-        public IActionResult MarkLost(int assetId)
-        {
-            _checkouts.MarkLost(assetId);
             return RedirectToAction("Detail", new { id = assetId });
         }
 
         [HttpPost]
         public IActionResult PlaceCheckout(int assetId, int libraryCardId)
         {
-            _checkouts.CheckInItem(assetId, libraryCardId);
+            _checkouts.CheckOutItem(assetId, libraryCardId);
             return RedirectToAction("Detail", new { id = assetId });
         }
 
@@ -134,7 +128,6 @@ namespace LibraryManagement.Controllers
             _checkouts.PlaceHold(assetId, libraryCardId);
             return RedirectToAction("Detail", new { id = assetId });
         }
-
-
     }
+
 }
