@@ -2,35 +2,36 @@
 
 @section Scripts
     {
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     }
 
 
 @section Styles
     {
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    }
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
-    <div class="container">
-        <div class="header clearfix detailHeading">
-            <h2 class="text-muted">Place Hold on Library Item</h2>
-        </div>
+}
 
-        <div class="jumbotron">
-            <div class="row">
-                <div class="col-md-3">
-                    <div>
-                        <p id="itemTitle">@Model.Title</p>
-                        <img class="detailImage" src="@Model.ImageUrl" />
-                    </div>
+<div class="container">
+    <div class="header clearfix detailHeading">
+        <h2 class="text-muted">Place Hold on Library Item</h2>
+    </div>
+
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-3">
+                <div>
+                    <p id="itemTitle">@Model.Title</p>
+                    <img class="detailImage" src="@Model.ImageUrl" />
                 </div>
-                @*you could also use tag helpers.*@
-                <div class="col-md-9">
-                    <p>There are currently @Model.HoldCount holds in the queue for this item.</p>
-                    @*this is an html helper - it creates an object that implements idisposable*@
-                    @using (Html.BeginForm("PlaceHold", "Catalog", FormMethod.Post))
+            </div>
+            @*you could also use tag helpers.*@
+            <div class="col-md-9">
+                <p>There are currently @Model.HoldCount holds in the queue for this item.</p>
+                @*this is an html helper - it creates an object that implements idisposable*@
+                @using (Html.BeginForm("PlaceHold", "Catalog", FormMethod.Post))
                 {
                     @Html.HiddenFor(a => a.AssetId)
                     <div>
@@ -41,8 +42,8 @@
                     <div>
                         <button type="submit" class="btn btn-info btn-lg">Place Hold</button>
                     </div>
-            }
-                </div>
+                }
             </div>
         </div>
     </div>
+</div>
