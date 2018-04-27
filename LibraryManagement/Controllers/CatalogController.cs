@@ -44,11 +44,12 @@ namespace LibraryManagement.Controllers
         {
             var asset = _asset.GetById(id);
 
-            var currentHolds = _checkouts.GetCurrentHold(id)
+            var curentHolds = _checkouts.GetCurrentHolds(id)
                 .Select(a => new AssetHoldModel
                 {
-                    HoldPlaced = _checkouts.GetCurrentHoldPlaced(a.Id),
+                    HoldPlaced = _checkouts.GetCurrentHoldPlaced(a.Id).ToString("d"),
                     PatronName = _checkouts.GetCurrentHoldPatronName(a.Id)
+                    
                 });
 
             var model = new AssetDetailModel
@@ -63,47 +64,18 @@ namespace LibraryManagement.Controllers
                 AuthorOrDirector = _asset.GetAuthorOrDirector(id),
                 CurrentLocation = _asset.GetCurrentLocation(id).Name,
                 DeweyCallNumber = _asset.GetDeweyIndex(id),
-                CheckoutHistory = _checkouts.GetChekoutHistory(id),
+                CheckoutHistory = _checkouts.GetCheckoutHistory(id),
                 ISBN = _asset.GetIsbn(id),
                 LatestCheckout = _checkouts.GetLatestCheckout(id),
                 PatronName = _checkouts.GetCurrentCheckoutPatron(id),
-                CurrentHolds = currentHolds
+                CurrentHolds = curentHolds
+
             };
+
             return View(model);
         }
 
-        public IActionResult Checkout(int id)
-        {
-            var asset = _asset.GetById(id);
-
-            var model = new CheckoutModel
-            {
-                AssetId = id,
-                Title = asset.Title,
-                ImageUrl = asset.ImageUrl,
-                LibraryCardId = "",
-                IsCheckedOut = _checkouts.IsCheckedOut(id)
-            };
-            return View(model);
-        }
-
-        public IActionResult Hold(int id)
-        {
-            var asset = _asset.GetById(id);
-
-            var model = new CheckoutModel
-            {
-                AssetId = id,
-                Title = asset.Title,
-                ImageUrl = asset.ImageUrl,
-                LibraryCardId = "",
-                IsCheckedOut = _checkouts.IsCheckedOut(id),
-                HoldCount = _checkouts.GetCurrentHold(id).Count()
-            };
-            return View(model);
-        }
-
-        public IActionResult MarkLost (int assetId)
+        public IActionResult MarkLost(int assetId)
         {
             _checkouts.MarkLost(assetId);
             return RedirectToAction("Detail", new { id = assetId });
@@ -115,10 +87,51 @@ namespace LibraryManagement.Controllers
             return RedirectToAction("Detail", new { id = assetId });
         }
 
+
+        public IActionResult Checkout(int id)
+        {
+            var asset = _asset.GetById(id);
+
+            var model = new CheckoutModel
+            {
+                AssetId = id,
+                ImageUrl = asset.ImageUrl,
+                Title = asset.Title,
+                LibraryCardId = " ",
+                IsCheckedOut = _checkouts.IsCheckedout(id)
+            };
+
+            return View(model);
+        }
+
+        public IActionResult CheckIn(int id)
+        {
+            _checkouts.CheckinItem(id);
+            return RedirectToAction("Detail", new { id = id });
+        }
+
+        public IActionResult Hold (int id)
+        {
+            var asset = _asset.GetById(id);
+
+            var model = new CheckoutModel
+            {
+                AssetId = id,
+                ImageUrl = asset.ImageUrl,
+                Title = asset.Title,
+                LibraryCardId = " ",
+                IsCheckedOut = _checkouts.IsCheckedout(id),
+                HoldCount = _checkouts.GetCurrentHolds(id).Count()
+                
+            };
+
+            return View(model);
+        }
+
         [HttpPost]
         public IActionResult PlaceCheckout(int assetId, int libraryCardId)
         {
-            _checkouts.CheckOutItem(assetId, libraryCardId);
+            _checkouts.CheckoutItem(assetId, libraryCardId);
             return RedirectToAction("Detail", new { id = assetId });
         }
 
