@@ -2,6 +2,7 @@
     font-family: "Coda";
     font-size: 1.8em;
     font-weight: bold;
+    
 }
 
     .logo > a {
@@ -85,6 +86,7 @@
 
 #patrons {
     background: url('/images/patron.jpeg') bottom left 15% no-repeat #555;
+    background-size: 100% cover;
 }
 
 .branchInfo {
