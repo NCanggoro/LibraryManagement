@@ -24,7 +24,7 @@ namespace LibraryServices
 
         public static string ReadableDay(int number)
         {
-            return Enum.GetName(typeof(DayOfWeek), number);
+            return Enum.GetName(typeof(DayOfWeek), number -1);
         }
 
         public static string ReadableTime(int time)
