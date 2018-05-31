@@ -1,7 +1,13 @@
-﻿.logo {
-    font-family: "Coda";
+﻿body {
+    font-family: 'Lato', sans-serif !important;
+    font-weight: 400;
+}
+
+
+.logo {
+    font-family: 'Lato', sans-serif !important;
     font-size: 1.8em;
-    font-weight: bold;
+    font-weight: 700;
     
 }
 
@@ -102,7 +108,7 @@
 }
 
 .customTable td {
-    text-align: left;
+    text-align: left !important;
     font-size: 1.2em;
 }
 
