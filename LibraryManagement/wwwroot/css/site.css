@@ -107,6 +107,13 @@
     margin: 0 auto;
 }
 
+.NavLink{
+    color: white !important;
+    text-decoration: none !important;
+}
+.NavLink a:hover{
+    color:black !important;
+}
 .customTable td {
     text-align: left !important;
     font-size: 1.2em;
