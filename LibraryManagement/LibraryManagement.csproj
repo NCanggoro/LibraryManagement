@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LibraryData\LibraryData.csproj" />
-    <ProjectReference Include="..\LibraryServices\LibraryServices.csproj" />
+    <ProjectReference Include="..\LibraryData\Data.csproj" />
+    <ProjectReference Include="..\LibraryServices\Services.csproj" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema="http://json.schemastore.org/circleciconfig" /></VisualStudio></ProjectExtensions>

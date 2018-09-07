@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagement", "LibraryManagement\LibraryManagement.csproj", "{08096C45-28C1-4BC3-99B3-696CE0BC0CF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManagement", "LibraryManagement\LibraryManagement.csproj", "{08096C45-28C1-4BC3-99B3-696CE0BC0CF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryData", "LibraryData\LibraryData.csproj", "{D1F3D69F-D862-40C6-BF4B-B6F46FD52E65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "LibraryData\Data.csproj", "{D1F3D69F-D862-40C6-BF4B-B6F46FD52E65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryServices", "LibraryServices\LibraryServices.csproj", "{84E069D6-7186-4D8E-9D39-F21D84ECFF81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "LibraryServices\Services.csproj", "{84E069D6-7186-4D8E-9D39-F21D84ECFF81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
